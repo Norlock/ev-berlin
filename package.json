@@ -1,0 +1,19 @@
+{
+  "name": "ev-berlin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "snowpack dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@snowpack/plugin-sass": "^1.4.0",
+    "sass": "^1.34.0",
+    "snowpack": "^3.5.7",
+    "snowpack-plugin-elm": "^0.4.3"
+  }
+}

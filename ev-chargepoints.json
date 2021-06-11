@@ -1,0 +1,297 @@
+[
+  {
+    "lat":52.5107536,
+    "lng":13.3793077,
+    "number":"24",
+    "name":"Voss Str., in Berlin",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5139771,
+    "lng":13.3901358,
+    "number":"61",
+    "name":"BE.emobil J\u00e4gerstra\u00dfe",
+    "street_name":"J\u00e4gerstra\u00dfe",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5155563,
+    "lng":13.3897219,
+    "number":"28",
+    "name":"28 Behrensstra\u00dfe Berlin",
+    "street_name":"Behrensstra\u00dfe",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5186272,
+    "lng":13.3877831,
+    "number":"115",
+    "name":"Be emobil Dorotheenstr",
+    "street_name":"Dorotheenstra\u00dfe",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5122032,
+    "lng":13.3935966,
+    "number":"33",
+    "name":"Allego Be-emobil",
+    "street_name":"Markgrafenstra\u00dfe",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5130272,
+    "lng":13.389802,
+    "number":"34",
+    "name":"Allego Be-emobil",
+    "street_name":"Taubenstra\u00dfe",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5103149,
+    "lng":13.3887529,
+    "number":"106",
+    "name":"Tiefgarage NH Hotel",
+    "street_name":"Leipziger Stra\u00dfe",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5096512,
+    "lng":13.3630352,
+    "number":"15",
+    "name":"EnBW - Landesvertretung Baden-W\u00fcrttemberg",
+    "street_name":"Tiergartenstra\u00dfe",
+    "postal_code":"10785",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5112152,
+    "lng":13.3899469,
+    "number":"191",
+    "name":"Vattenfall - Friedrichstra\u00dfe",
+    "street_name":"Friedrichstra\u00dfe",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5102768,
+    "lng":13.4088888,
+    "number":"76",
+    "name":"76 Alte Jakobstra\u00dfe Berlin",
+    "street_name":"Alte Jakobstra\u00dfe",
+    "postal_code":"10179",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5088501,
+    "lng":13.4026566,
+    "number":"1",
+    "name":"Allego Be-emobil",
+    "street_name":"Beuthstra\u00dfe",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5113335,
+    "lng":13.4021626,
+    "number" : "2-5",
+    "name":"Seydelstra\u00dfe",
+    "street_name":"Seydelstra\u00dfe 2-5",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5160179,
+    "lng":13.3802433,
+    "number": 77,
+    "name":"New Motion (DE) - Unter den Linden 77 - Berlin",
+    "street_name":"Unter den Linden",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5123215,
+    "lng":13.4189157,
+    "number":"22",
+    "name":"Allego Be-emobil",
+    "street_name":"Rungestra\u00dfe",
+    "postal_code":"10179",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5123596,
+    "lng":13.3776731,
+    "number":"10",
+    "name":"Landesvertretung  Niedersachsen",
+    "street_name":"In den Ministerg\u00e4rten",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5091438,
+    "lng":13.3920517,
+    "number":"29",
+    "name":"Parkhaus im Hilton von Auto Herbst im Hilton",
+    "street_name":"Charlottenstra\u00dfe",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5094681,
+    "lng":13.3895426,
+    "number":"72",
+    "name":"72 Krausenstra\u00dfe Berlin",
+    "street_name":"Krausenstra\u00dfe",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5187454,
+    "lng":13.4091358,
+    "number":"1",
+    "name":"1 J\u00fcdenstrasse Berlin",
+    "street_name":"J\u00fcdenstrasse",
+    "postal_code":"10178",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5104294,
+    "lng":13.3738441,
+    "number":"3",
+    "name":"3 Bellevuestr. Berlin",
+    "street_name":"Bellevuestr.",
+    "postal_code":"10785",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5116119,
+    "lng":13.3919315,
+    "number":"29",
+    "name":"Hilton Berlin Parking",
+    "street_name":"Charlottenstra\u00dfe",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5093803,
+    "lng":13.39118,
+    "number":"9",
+    "name":"LS14 - Krausenstr",
+    "street_name":"Krausenstr",
+    "postal_code":"17178",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5099983,
+    "lng":13.3755274,
+    "number":"3",
+    "name":"Allego - Bellevuestrasse - Berlin",
+    "street_name":"Potsdamer Platz",
+    "postal_code":"10785",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.511261,
+    "lng":13.3967533,
+    "name":"Allego - Be-emobil",
+    "street_name":"Jerusalemer Stra\u00dfe",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5142326,
+    "lng":13.3955173,
+    "number":"49",
+    "name":"Allego Be-emobil",
+    "street_name":"J\u00e4gerstra\u00dfe",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5101891,
+    "lng":13.403163,
+    "number":"5",
+    "name":"Seydelstra\u00dfe 5",
+    "street_name":"Seydelstra\u00dfe",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5133095,
+    "lng":13.4156256,
+    "number":"3",
+    "name":"Be emobil Ladestation - Am K\u00f6llnischen Park",
+    "street_name":"Am K\u00f6llnischen Park",
+    "postal_code":"10179",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5129318,
+    "lng":13.3901262,
+    "number":"14",
+    "name":"Rewe Markt in der Taubenstrasse Berlin (Private)",
+    "street_name":"Taubenstra\u00dfe",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5103073,
+    "lng":13.3753128,
+    "number":"3",
+    "name":"The Ritz-Carlton, Berlin (Tesla)",
+    "street_name":"Potsdamer Platz",
+    "postal_code":"10785",
+    "city":"Berlin",
+  },
+  {
+    "lat":52.5101051,
+    "lng":13.378046,
+    "number":"19",
+    "name":"Vattenfall Leipziger Platz",
+    "street_name":"Leipziger Platz",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5158043,
+    "lng":13.4104624,
+    "number":"1",
+    "name":"Innogy - Neue J\u00fcdenstra\u00dfe Berlin",
+    "street_name":"Neue J\u00fcdenstra\u00dfe",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5176811,
+    "lng":13.4008408,
+    "number":"5",
+    "name":"eRoaming Showcase Ebee ICNC",
+    "street_name":"Schlo\u00dfplatz",
+    "postal_code":"10178",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.509449,
+    "lng":13.3941813,
+    "number":"28",
+    "name":"Markgrafenstra\u00dfe 28",
+    "street_name":"Markgrafenstra\u00dfe",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5103378,
+    "lng":13.388092,
+    "number":"106",
+    "name":"Parkeergarage Hotel NH Collection Berlin Mitte am Checkpoint Charlie",
+    "street_name":"Leipziger str.",
+    "postal_code":"10117",
+    "city":"Berlin"
+  }
+]
