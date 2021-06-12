@@ -1,5 +1,6 @@
-module Main exposing (main)
+port module Main exposing (main)
 
+import Api
 import Browser
 import Browser.Navigation as Nav
 import Html exposing (..)
@@ -20,9 +21,12 @@ main =
 
 
 init : () -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
-init _ url key =
-    ( {}
-    , Cmd.none
+init _ _ _ =
+    ( { markers = [] }
+    , Cmd.batch
+        [ mapsSend "load"
+        , Api.fetchMarkers
+        ]
     )
 
 
@@ -33,6 +37,12 @@ update msg model =
             ( model, Cmd.none )
 
         ClickedLink _ ->
+            ( model, Cmd.none )
+
+        FetchMarkers ->
+            ( model, Cmd.none )
+
+        ReceivedMarkers markers ->
             ( model, Cmd.none )
 
 
@@ -62,3 +72,13 @@ searchBar model =
         [ input [ placeholder "Search" ] []
         , button [] [ text "Submit" ]
         ]
+
+
+
+-- Ports
+
+
+port mapsSend : String -> Cmd msg
+
+
+port fetchMarkers : (String -> msg) -> Sub msg

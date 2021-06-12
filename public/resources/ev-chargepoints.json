@@ -3,7 +3,8 @@
     "lat":52.5107536,
     "lng":13.3793077,
     "number":"24",
-    "name":"Voss Str., in Berlin",
+    "name":"Voss Stra\u00dfe, in Berlin",
+    "street_name":"Voss Stra\u00dfe",
     "postal_code":"10117",
     "city":"Berlin"
   },
@@ -109,7 +110,7 @@
   {
     "lat":52.5160179,
     "lng":13.3802433,
-    "number": 77,
+    "number": "77",
     "name":"New Motion (DE) - Unter den Linden 77 - Berlin",
     "street_name":"Unter den Linden",
     "postal_code":"10117",
@@ -199,6 +200,7 @@
   {
     "lat":52.511261,
     "lng":13.3967533,
+    "number":"28",
     "name":"Allego - Be-emobil",
     "street_name":"Jerusalemer Stra\u00dfe",
     "postal_code":"10117",
@@ -247,7 +249,7 @@
     "name":"The Ritz-Carlton, Berlin (Tesla)",
     "street_name":"Potsdamer Platz",
     "postal_code":"10785",
-    "city":"Berlin",
+    "city":"Berlin"
   },
   {
     "lat":52.5101051,
