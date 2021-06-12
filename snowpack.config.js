@@ -8,7 +8,7 @@ module.exports = {
       public: "/"
   },
   plugins: [
-      'snowpack-plugin-elm',
+      ['snowpack-plugin-elm', { debugger: "dev", verbose: true }],
       '@snowpack/plugin-sass'
   ],
   packageOptions: {

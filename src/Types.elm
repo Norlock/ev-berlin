@@ -7,6 +7,13 @@ import Url exposing (Url)
 
 type alias Model =
     { markers : List Marker
+    , error : Maybe ErrorMsg
+    }
+
+
+type alias ErrorMsg =
+    { title : String
+    , body : String
     }
 
 
@@ -24,5 +31,5 @@ type alias Marker =
 type Msg
     = ChangedUrl Url
     | ClickedLink UrlRequest
-    | FetchMarkers
+    | RequestMarkers
     | ReceivedMarkers (Result Http.Error (List Marker))

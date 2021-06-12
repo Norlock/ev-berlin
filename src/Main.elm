@@ -5,6 +5,7 @@ import Browser
 import Browser.Navigation as Nav
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Http
 import Types exposing (..)
 import Url
 
@@ -22,11 +23,10 @@ main =
 
 init : () -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
 init _ _ _ =
-    ( { markers = [] }
-    , Cmd.batch
-        [ mapsSend "load"
-        , Api.fetchMarkers
-        ]
+    ( { markers = []
+      , error = Nothing
+      }
+    , sendMaps "load"
     )
 
 
@@ -39,16 +39,32 @@ update msg model =
         ClickedLink _ ->
             ( model, Cmd.none )
 
-        FetchMarkers ->
-            ( model, Cmd.none )
+        ReceivedMarkers result ->
+            handleMarkers model result
 
-        ReceivedMarkers markers ->
-            ( model, Cmd.none )
+        RequestMarkers ->
+            ( model, Api.fetchMarkers )
+
+
+handleMarkers : Model -> Result Http.Error (List Marker) -> ( Model, Cmd Msg )
+handleMarkers model result =
+    let
+        errorMsg =
+            { title = "Something went wrong"
+            , body = "Can't retrieve markers"
+            }
+    in
+    case result of
+        Ok markers ->
+            ( { model | markers = markers }, sendMarkers markers )
+
+        Err err ->
+            ( { model | error = Just errorMsg }, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
-    Sub.none
+    requestMarkers decodeMarkersSubscription
 
 
 view : Model -> Browser.Document Msg
@@ -74,11 +90,24 @@ searchBar model =
         ]
 
 
+dialog : Model -> Html Msg
+dialog model =
+    div [] []
+
+
+decodeMarkersSubscription : String -> Msg
+decodeMarkersSubscription _ =
+    RequestMarkers
+
+
 
 -- Ports
 
 
-port mapsSend : String -> Cmd msg
+port sendMaps : String -> Cmd msg
 
 
-port fetchMarkers : (String -> msg) -> Sub msg
+port sendMarkers : List Marker -> Cmd msg
+
+
+port requestMarkers : (String -> msg) -> Sub msg
