@@ -6,6 +6,10 @@ import Json.Decode.Pipeline exposing (..)
 import Types exposing (..)
 
 
+
+-- Markers
+
+
 fetchMarkers : Cmd Msg
 fetchMarkers =
     Http.get
@@ -29,3 +33,24 @@ markerDecoder =
         |> required "postal_code" string
         |> required "city" string
         |> required "name" string
+
+
+
+-- Maps TODO restrict lat lng search
+
+
+autocompleteSearch : ( String, String ) -> Cmd Msg
+autocompleteSearch searchData =
+    Http.get
+        { url = autocompleteUrl searchData
+        , expect = Http.expectJson ReceivedMarkers markersDecoder
+        }
+
+
+autocompleteUrl : ( String, String ) -> String
+autocompleteUrl ( key, val ) =
+    "https://maps.googleapis.com/maps/api/place/autocomplete/json?input="
+        ++ val
+        ++ " &key="
+        ++ key
+        ++ "&sessiontoken=1234567890"

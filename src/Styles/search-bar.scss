@@ -1,0 +1,33 @@
+.search-bar {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    margin-top: 24px;
+    background-color: #333;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    padding: 0.5em;
+    z-index: 2;
+}
+
+.search-btn {
+    cursor: pointer;
+    outline: unset;
+    border: 1px solid darkgray;
+    margin-left: 0.5em;
+    padding: 5px;
+    background-color: lightgray;
+    border-radius: 50%;
+}
+
+.search-input {
+    padding: 3px;
+    min-width: 0;
+    transition: ease-out, min-width 0.5s ease-in-out;
+
+    &:focus {
+        min-width: 250px;
+    }
+}

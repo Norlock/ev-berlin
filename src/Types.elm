@@ -8,6 +8,9 @@ import Url exposing (Url)
 type alias Model =
     { markers : List Marker
     , error : Maybe ErrorMsg
+    , search : String
+    , apiKey : Maybe String
+    , suggestions : Maybe (List AutocompleteItem)
     }
 
 
@@ -28,8 +31,20 @@ type alias Marker =
     }
 
 
+type alias AutocompleteItem =
+    { description : String
+    , distanceInMeters : Int
+    , placeId : String
+    , types : List String
+    }
+
+
 type Msg
     = ChangedUrl Url
     | ClickedLink UrlRequest
-    | RequestMarkers
+    | PortApiKey String
     | ReceivedMarkers (Result Http.Error (List Marker))
+    | ReceivedSuggestions (Result Http.Error (List AutocompleteItem))
+    | HideError
+    | SearchInput String
+    | SubmitSearch
