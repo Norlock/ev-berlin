@@ -22,12 +22,13 @@ main =
         }
 
 
-init : () -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
-init _ _ _ =
+init : String -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
+init apiKey _ _ =
     ( { markers = []
       , error = Nothing
       , search = ""
-      , apiKey = Nothing
+      , apiKey = apiKey
+      , suggestions = Nothing
       }
     , sendMaps "load"
     )
@@ -42,8 +43,8 @@ update msg model =
         ClickedLink _ ->
             ( model, Cmd.none )
 
-        PortApiKey key ->
-            ( { model | apiKey = Just key }, Api.fetchMarkers )
+        FetchMarkers ->
+            ( model , Api.fetchMarkers )
 
         ReceivedMarkers result ->
             handleMarkers model result
@@ -63,23 +64,7 @@ update msg model =
 
 handleSubmitSearch : Model -> ( Model, Cmd Msg )
 handleSubmitSearch model =
-    case model.apiKey of
-        Just key ->
-            ( model, Api.autocompleteSearch ( key, model.search ) )
-
-        Nothing ->
-            ( noApikeyError model, Cmd.none )
-
-
-noApikeyError : Model -> Model
-noApikeyError model =
-    let
-        errorMsg =
-            { title = "Something went wrong"
-            , body = "Can't connect with Google maps"
-            }
-    in
-    { model | error = Just errorMsg }
+    ( model, Api.autocompleteSearch ( model.apiKey, model.search ) )
 
 
 handleMarkers : Model -> Result Http.Error (List Marker) -> ( Model, Cmd Msg )
@@ -164,8 +149,8 @@ dialog model =
 
 
 decodeMarkersSubscription : String -> Msg
-decodeMarkersSubscription key =
-    PortApiKey key
+decodeMarkersSubscription _ =
+    FetchMarkers 
 
 
 

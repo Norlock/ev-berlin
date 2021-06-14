@@ -9,7 +9,7 @@ type alias Model =
     { markers : List Marker
     , error : Maybe ErrorMsg
     , search : String
-    , apiKey : Maybe String
+    , apiKey : String
     , suggestions : Maybe (List AutocompleteItem)
     }
 
@@ -42,7 +42,7 @@ type alias AutocompleteItem =
 type Msg
     = ChangedUrl Url
     | ClickedLink UrlRequest
-    | PortApiKey String
+    | FetchMarkers 
     | ReceivedMarkers (Result Http.Error (List Marker))
     | ReceivedSuggestions (Result Http.Error (List AutocompleteItem))
     | HideError
