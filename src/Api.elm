@@ -39,18 +39,18 @@ markerDecoder =
 -- Maps TODO restrict lat lng search
 
 
-autocompleteSearch : ( String, String ) -> Cmd Msg
-autocompleteSearch searchData =
+autocompleteSearch : String -> String -> Cmd Msg
+autocompleteSearch key search =
     Http.get
-        { url = autocompleteUrl searchData
+        { url = autocompleteUrl key search
         , expect = Http.expectJson ReceivedMarkers markersDecoder
         }
 
 
-autocompleteUrl : ( String, String ) -> String
-autocompleteUrl ( key, val ) =
+autocompleteUrl : String -> String -> String
+autocompleteUrl key search =
     "https://maps.googleapis.com/maps/api/place/autocomplete/json?input="
-        ++ val
+        ++ search
         ++ " &key="
         ++ key
         ++ "&sessiontoken=1234567890"

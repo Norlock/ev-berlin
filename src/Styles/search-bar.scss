@@ -1,15 +1,23 @@
+$min-width-input: 300px;
+
 .search-bar {
     display: flex;
-    position: relative;
+    position: fixed;
     justify-content: center;
     margin-top: 24px;
     background-color: #333;
     border-radius: 5px;
-    margin-left: auto;
-    margin-right: auto;
     width: fit-content;
     padding: 0.5em;
+    top: 2em;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
     z-index: 2;
+
+    &:hover > #search-input {
+        min-width: $min-width-input;
+    }
 }
 
 .search-btn {
@@ -20,14 +28,16 @@
     padding: 5px;
     background-color: lightgray;
     border-radius: 50%;
+
 }
 
-.search-input {
+#search-input {
     padding: 3px;
-    min-width: 0;
+
     transition: ease-out, min-width 0.5s ease-in-out;
+    min-width: 0;
 
     &:focus {
-        min-width: 250px;
+        min-width: $min-width-input;
     }
 }

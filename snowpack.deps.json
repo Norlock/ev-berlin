@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@googlemaps/js-api-loader": "^1.12.1"
+  },
+  "lock": {
+    "@googlemaps/js-api-loader#^1.12.1": "@googlemaps/js-api-loader@v1.12.1-VmaWU58yunHTqEmcHhUx"
+  }
+}

@@ -42,7 +42,7 @@ type alias AutocompleteItem =
 type Msg
     = ChangedUrl Url
     | ClickedLink UrlRequest
-    | FetchMarkers 
+    | FetchMarkers
     | ReceivedMarkers (Result Http.Error (List Marker))
     | ReceivedSuggestions (Result Http.Error (List AutocompleteItem))
     | HideError

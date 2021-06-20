@@ -44,7 +44,7 @@ update msg model =
             ( model, Cmd.none )
 
         FetchMarkers ->
-            ( model , Api.fetchMarkers )
+            ( model, Api.fetchMarkers )
 
         ReceivedMarkers result ->
             handleMarkers model result
@@ -56,7 +56,7 @@ update msg model =
             ( { model | error = Nothing }, Cmd.none )
 
         SearchInput val ->
-            ( { model | search = val }, Cmd.none )
+            ( { model | search = val }, sendSearch val )
 
         SubmitSearch ->
             handleSubmitSearch model
@@ -64,7 +64,11 @@ update msg model =
 
 handleSubmitSearch : Model -> ( Model, Cmd Msg )
 handleSubmitSearch model =
-    ( model, Api.autocompleteSearch ( model.apiKey, model.search ) )
+    ( model, Api.autocompleteSearch model.apiKey model.search )
+
+
+
+--( model, sendSearch model.search )
 
 
 handleMarkers : Model -> Result Http.Error (List Marker) -> ( Model, Cmd Msg )
@@ -123,7 +127,7 @@ body model =
 searchBar : Model -> Html Msg
 searchBar model =
     div [ class "search-bar" ]
-        [ input [ placeholder "Search", class "search-input", onInput SearchInput ] []
+        [ input [ placeholder "Search", id "search-input", onInput SearchInput ] []
         , button [ class "search-btn fas fa-search", onClick SubmitSearch ] []
         ]
 
@@ -150,7 +154,7 @@ dialog model =
 
 decodeMarkersSubscription : String -> Msg
 decodeMarkersSubscription _ =
-    FetchMarkers 
+    FetchMarkers
 
 
 
@@ -158,6 +162,9 @@ decodeMarkersSubscription _ =
 
 
 port sendMaps : String -> Cmd msg
+
+
+port sendSearch : String -> Cmd msg
 
 
 port sendMarkers : List Marker -> Cmd msg
