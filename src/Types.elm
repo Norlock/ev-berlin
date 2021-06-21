@@ -9,8 +9,7 @@ type alias Model =
     { markers : List Marker
     , error : Maybe ErrorMsg
     , search : String
-    , apiKey : String
-    , suggestions : Maybe (List AutocompleteItem)
+    , dialog : Maybe DialogType
     }
 
 
@@ -31,20 +30,16 @@ type alias Marker =
     }
 
 
-type alias AutocompleteItem =
-    { description : String
-    , distanceInMeters : Int
-    , placeId : String
-    , types : List String
-    }
-
-
 type Msg
     = ChangedUrl Url
     | ClickedLink UrlRequest
     | FetchMarkers
     | ReceivedMarkers (Result Http.Error (List Marker))
-    | ReceivedSuggestions (Result Http.Error (List AutocompleteItem))
     | HideError
     | SearchInput String
     | SubmitSearch
+
+
+type DialogType
+    = Error
+    | Favorites

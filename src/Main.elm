@@ -22,15 +22,14 @@ main =
         }
 
 
-init : String -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
-init apiKey _ _ =
+init : () -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
+init _ _ _ =
     ( { markers = []
       , error = Nothing
+      , dialog = Nothing
       , search = ""
-      , apiKey = apiKey
-      , suggestions = Nothing
       }
-    , sendMaps "load"
+    , toJSLoadMaps ""
     )
 
 
@@ -49,14 +48,11 @@ update msg model =
         ReceivedMarkers result ->
             handleMarkers model result
 
-        ReceivedSuggestions result ->
-            handleSuggestions model result
-
         HideError ->
             ( { model | error = Nothing }, Cmd.none )
 
         SearchInput val ->
-            ( { model | search = val }, sendSearch val )
+            ( { model | search = val }, Cmd.none )
 
         SubmitSearch ->
             handleSubmitSearch model
@@ -64,11 +60,7 @@ update msg model =
 
 handleSubmitSearch : Model -> ( Model, Cmd Msg )
 handleSubmitSearch model =
-    ( model, Api.autocompleteSearch model.apiKey model.search )
-
-
-
---( model, sendSearch model.search )
+    ( model, Cmd.none )
 
 
 handleMarkers : Model -> Result Http.Error (List Marker) -> ( Model, Cmd Msg )
@@ -81,26 +73,10 @@ handleMarkers model result =
     in
     case result of
         Ok markers ->
-            ( { model | markers = markers }, sendMarkers markers )
+            ( { model | markers = markers }, toJSMarkers markers )
 
-        Err err ->
+        Err _ ->
             ( { model | error = Just errorMsg }, Cmd.none )
-
-
-handleSuggestions : Model -> Result Http.Error (List AutocompleteItem) -> ( Model, Cmd Msg )
-handleSuggestions model result =
-    let
-        errorMsg =
-            { title = "Something went wrong"
-            , body = "Can't retrieve suggestions"
-            }
-    in
-    case result of
-        Ok suggestions ->
-            ( { model | suggestions = Just suggestions }, Cmd.none )
-
-        Err err ->
-            ( { model | suggestions = Nothing, error = Just errorMsg }, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
@@ -118,35 +94,76 @@ view model =
 body : Model -> Html Msg
 body model =
     div [ class "container" ]
-        [ dialog model
-        , searchBar model
+        [ selectedDialog model
+        , searchBar
         , div [ id "map" ] []
         ]
 
 
-searchBar : Model -> Html Msg
-searchBar model =
+searchBar : Html Msg
+searchBar =
     div [ class "search-bar" ]
         [ input [ placeholder "Search", id "search-input", onInput SearchInput ] []
-        , button [ class "search-btn fas fa-search", onClick SubmitSearch ] []
+        , button [ class "nav-btn fas fa-search", onClick SubmitSearch ] []
+        , button [ class "nav-btn fas fa-star" ] []
         ]
 
 
-dialog : Model -> Html Msg
-dialog model =
+selectedDialog : Model -> Html Msg
+selectedDialog model =
+    case model.dialog of
+        Just Error ->
+            errorDialog model
+
+        Just Favorites ->
+            favoritesDialog model
+
+        Nothing ->
+            div [] []
+
+
+dialog : String -> Html Msg -> Html Msg
+dialog title dialogBody =
+    div [ class "overlay" ]
+        [ div [ class "dialog" ]
+            [ div [ class "header" ]
+                [ span [ class "title" ] [ text title ]
+                , button [ class "close fas fa-times", onClick HideError ] []
+                ]
+            , div [ class "body" ]
+                [ dialogBody
+                ]
+            ]
+        ]
+
+
+favoritesDialog : Model -> Html Msg
+favoritesDialog model =
+    -- TODO add / remove from favorites
+    let
+        title =
+            "Add to favorites?"
+    in
+    dialog title (favoritesBody model)
+
+
+favoritesBody : Model -> Html Msg
+favoritesBody model =
+    div [ class "favorites-dialog-body" ]
+        [ button [ class "confirm" ] [ text "yes" ]
+        , button [ class "deny" ] [ text "no" ]
+        ]
+
+
+errorDialog : Model -> Html Msg
+errorDialog model =
     case model.error of
         Just errorMsg ->
-            div [ class "overlay" ]
-                [ div [ class "dialog" ]
-                    [ div [ class "header" ]
-                        [ span [ class "title" ] [ text errorMsg.title ]
-                        , button [ class "close fas fa-times", onClick HideError ] []
-                        ]
-                    , div [ class "body" ]
-                        [ p [ class "dialog-message" ] [ text errorMsg.body ]
-                        ]
-                    ]
-                ]
+            let
+                dialogBody =
+                    p [ class "dialog-message" ] [ text errorMsg.body ]
+            in
+            dialog errorMsg.title dialogBody
 
         Nothing ->
             div [] []
@@ -161,13 +178,10 @@ decodeMarkersSubscription _ =
 -- Ports
 
 
-port sendMaps : String -> Cmd msg
+port toJSLoadMaps : String -> Cmd msg
 
 
-port sendSearch : String -> Cmd msg
-
-
-port sendMarkers : List Marker -> Cmd msg
+port toJSMarkers : List Marker -> Cmd msg
 
 
 port requestMarkers : (String -> msg) -> Sub msg

@@ -2,9 +2,6 @@
 // See all supported options: https://www.snowpack.dev/reference/configuration
 const fs = require('fs');
 
-const cert = fs.readFileSync('snowpack.crt');
-const key = fs.readFileSync('snowpack.key');
-
 module.exports = {
   mount: {
       src: "/dist",

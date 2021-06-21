@@ -1,4 +1,5 @@
 @use "search-bar.scss";
+@use "dialog.scss";
 
 * {
     margin: 0;
@@ -21,41 +22,3 @@
     top: 0;
 }
 
-.overlay {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background-color: rgba($color: #000000, $alpha: 0.3);
-    z-index: 100;
-}
-
-.dialog {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    left: 50%;
-    top: 20%;
-    background-color: white;
-    transform: translate(-50%, -50%);
-    border-radius: 3px;
-    
-    .header {
-        background-color: lightgray;
-        padding: 20px;
-        border: 1px solid black;
-
-        .close {
-            padding: 5px;
-            margin-left: 5px;
-        }
-    }
-
-    .body {
-        padding: 20px;
-        border-bottom: 1px solid black; 
-        border-left: 1px solid black;
-        border-right: 1px solid black;
-    }
-}
