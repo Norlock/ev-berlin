@@ -3,18 +3,26 @@ import './Styles/index.scss';
 import { Loader } from '@googlemaps/js-api-loader';
 
 interface Location {
-  lat: number,
-  lng: number
+  lat: number;
+  lng: number;
+}
+
+interface MarkerData extends Location {
+  streetName: string;
+  number: String;
+  postalCode: String;
+  city: String;
+  displayName: String;
 }
 
 const API_KEY = "AIzaSyCLu9vknAfT0hurEMqWgNosoVzgsqbMyzg";
 const berlin = { lat: 52.5145658, lng: 13.3907269 };
 
 let input: HTMLInputElement;
-let map: any;
-let google: any;
+let map: google.maps.Map;
+let google: typeof globalThis.google;
 let autocomplete: google.maps.places.Autocomplete;
-let markers: any;
+let markers: google.maps.Marker[] = [];
 
 const app = Elm.Main.init({
     node: document.getElementById('app'),
@@ -44,7 +52,6 @@ async function loadGoogleMaps(): Promise<void> {
       types: ["address"],
     });
 
-    //autocomplete.addListener("place_changed", findNearestEv);
     google.maps.event.addListener(autocomplete, 'place_changed', () => {
       const place = autocomplete.getPlace();
       const placeLocation = place.geometry.location;
@@ -76,7 +83,6 @@ function setMyLocation() {
                 });
             },
             () => {
-                // TODO error 
             }
         );
     } else {
@@ -84,14 +90,22 @@ function setMyLocation() {
     }
 }
 
+function removeMarkers() {
+    markers.forEach(marker => {
+      marker.setMap(null);
+    });
+
+    markers = [];
+}
+
 app.ports.toJSLoadMaps.subscribe((message: any) => {
   loadGoogleMaps();
 });
 
-app.ports.toJSMarkers.subscribe((markers: any) => {
-    console.log('markers', markers);
+app.ports.toJSMarkers.subscribe((items: MarkerData[]) => {
+    removeMarkers();
 
-    markers.forEach((markerItem: any) => {
+    items.forEach((markerItem: any) => {
         const marker = new google.maps.Marker({
             position: { lat: markerItem.lat, lng: markerItem.lng },
             map,
@@ -100,12 +114,15 @@ app.ports.toJSMarkers.subscribe((markers: any) => {
 
         marker.addListener("click", () => {
             const location: Location = {
-              lat: marker.position.lat(),
-              lng: marker.position.lng()
+              lat: marker.getPosition().lat(),
+              lng: marker.getPosition().lng()
             }
 
             app.ports.toElmMarkerSelected.send(location);
         });
+
+        markers.push(marker);
+
     });
 });
 

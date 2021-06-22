@@ -10,6 +10,7 @@ type alias Model =
     , favorites : List Marker
     , search : String
     , dialog : Maybe DialogType
+    , showFavorites : Bool
     }
 
 
@@ -47,6 +48,7 @@ type Msg
     | SearchInput String
     | SubmitSearch
     | UpdateFavorites Location
+    | ToggleFavorites
 
 
 type DialogType

@@ -28,6 +28,7 @@ init _ _ _ =
       , favorites = []
       , dialog = Nothing
       , search = ""
+      , showFavorites = False
       }
     , toJSLoadMaps ""
     )
@@ -58,13 +59,6 @@ update msg model =
             handleSubmitSearch model
 
         UpdateFavorites marker ->
-            let
-                _ =
-                    Debug.log "loc" marker
-
-                _ =
-                    Debug.log "favorites" model.favorites
-            in
             ( handleUpdateFavorites model marker, Cmd.none )
 
         AddToFavorites marker ->
@@ -82,6 +76,19 @@ update msg model =
                         |> List.filter (\m -> m.lat /= marker.lat && m.lng /= marker.lng)
             in
             ( { model | favorites = favorites, dialog = Nothing }, Cmd.none )
+
+        ToggleFavorites ->
+            { model | showFavorites = not model.showFavorites }
+                |> portMarkers
+
+
+portMarkers : Model -> ( Model, Cmd Msg )
+portMarkers model =
+    if model.showFavorites then
+        ( model, toJSMarkers model.favorites )
+
+    else
+        ( model, toJSMarkers model.markers )
 
 
 handleUpdateFavorites : Model -> Location -> Model
@@ -144,17 +151,22 @@ body : Model -> Html Msg
 body model =
     div [ class "container" ]
         [ selectedDialog model
-        , searchBar
+        , searchBar model
         , div [ id "map" ] []
         ]
 
 
-searchBar : Html Msg
-searchBar =
+searchBar : Model -> Html Msg
+searchBar model =
     div [ class "search-bar" ]
         [ input [ placeholder "Search", id "search-input", onInput SearchInput ] []
         , button [ class "nav-btn fas fa-search", onClick SubmitSearch ] []
-        , button [ class "nav-btn fas fa-star" ] []
+        , button
+            [ class "nav-btn fav-btn fas fa-star"
+            , classList [ ( "show-favorites", model.showFavorites ) ]
+            , onClick ToggleFavorites
+            ]
+            []
         ]
 
 
