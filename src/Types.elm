@@ -7,7 +7,7 @@ import Url exposing (Url)
 
 type alias Model =
     { markers : List Marker
-    , error : Maybe ErrorMsg
+    , favorites : List Marker
     , search : String
     , dialog : Maybe DialogType
     }
@@ -30,16 +30,25 @@ type alias Marker =
     }
 
 
+type alias Location =
+    { lat : Float
+    , lng : Float
+    }
+
+
 type Msg
     = ChangedUrl Url
     | ClickedLink UrlRequest
     | FetchMarkers
     | ReceivedMarkers (Result Http.Error (List Marker))
-    | HideError
+    | HideDialog
+    | AddToFavorites Marker
+    | DeleteFromFavorites Marker
     | SearchInput String
     | SubmitSearch
+    | UpdateFavorites Location
 
 
 type DialogType
-    = Error
-    | Favorites
+    = Error ErrorMsg
+    | Favorites Marker

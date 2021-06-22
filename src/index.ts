@@ -2,6 +2,11 @@ import { Elm } from './Main.elm';
 import './Styles/index.scss';
 import { Loader } from '@googlemaps/js-api-loader';
 
+interface Location {
+  lat: number,
+  lng: number
+}
+
 const API_KEY = "AIzaSyCLu9vknAfT0hurEMqWgNosoVzgsqbMyzg";
 const berlin = { lat: 52.5145658, lng: 13.3907269 };
 
@@ -94,7 +99,12 @@ app.ports.toJSMarkers.subscribe((markers: any) => {
         });
 
         marker.addListener("click", () => {
-            console.log('marker clicked', marker);
+            const location: Location = {
+              lat: marker.position.lat(),
+              lng: marker.position.lng()
+            }
+
+            app.ports.toElmMarkerSelected.send(location);
         });
     });
 });
