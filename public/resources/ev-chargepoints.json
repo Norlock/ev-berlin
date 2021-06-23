@@ -295,5 +295,374 @@
     "street_name":"Leipziger str.",
     "postal_code":"10117",
     "city":"Berlin"
+  },
+  {
+    "lat":52.5191994,
+    "lng":13.4027996,
+    "number":"3",
+    "name":"Radisson Blu Hotel Berlin",
+    "street_name":"Karl-Liebknecht-Stra\u00dfe",
+    "postal_code":"10178",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5102501,
+    "lng":13.4323559,
+    "number":"1",
+    "name":"stadtraum.com (Stadtraum\/Parkraum staff only)",
+    "street_name":"Am Ostbahnhof",
+    "postal_code":"10243",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5237198,
+    "lng":13.3805809,
+    "number":"6",
+    "name":"Innogy - Berlin - 6 Schumannstr. ",
+    "street_name":"Schumannstr.",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.51614,
+    "lng":13.4799891,
+    "number":"1",
+    "name":"1 Normannenstr. Berlin",
+    "street_name":"Normannenstr.",
+    "postal_code":"10367",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5244141,
+    "lng":13.486392,
+    "number":"3",
+    "name":"Squash House Berlin (Tesla)",
+    "street_name":"Vulkanstra\u00dfe",
+    "postal_code":"10367",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5100288,
+    "lng":13.4296274,
+    "number":"2",
+    "name":"Ibis Ostbahnhof - Berlin",
+    "street_name":"An der Schillingbr\u00fccke",
+    "postal_code":"10243",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5139313,
+    "lng":13.4770098,
+    "number":"113",
+    "name":"New Motion - Frankfurter Allee",
+    "street_name":"Frankfurter Allee",
+    "postal_code":"10365",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5199013,
+    "lng":13.4147949,
+    "number":"20",
+    "name":"20 Grunerstra\u00dfe Berlin",
+    "street_name":"Grunerstra\u00dfe",
+    "postal_code":"10179",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5093498,
+    "lng":13.4323826,
+    "number":"36",
+    "name":"GP JOULE Connect GmbH & Co. KG -  Stralauer Platz 36 - Berlin",
+    "street_name":"Stralauer Platz",
+    "postal_code":"10243",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5116653,
+    "lng":13.4975004,
+    "number":"248",
+    "name":"248 Frankfurter Allee Berlin",
+    "street_name":"Frankfurter Allee",
+    "postal_code":"10365",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5241661,
+    "lng":13.4213886,
+    "number":"4",
+    "name":"4 Mollstra\u00dfe Berlin",
+    "street_name":"Mollstra\u00dfe",
+    "postal_code":"10178",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5145187,
+    "lng":13.4628296,
+    "number":"1A",
+    "name":"Mainzer Stra\u00dfe - Berlin",
+    "street_name":"Mainzer Stra\u00dfe",
+    "postal_code":"10247",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5243607,
+    "lng":13.4117069,
+    "number":"29",
+    "name":"Karl-Liebknecht-Strasse in Berlin",
+    "street_name":"Karl-Liebknecht-Stra\u00dfe",
+    "postal_code":"10178",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5222168,
+    "lng":13.4070978,
+    "number":"13",
+    "name":"Kaufland - Karl-Liebknecht-Stra\u00dfe",
+    "street_name":"Karl-Liebknecht-Stra\u00dfe",
+    "postal_code":"10178",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5227661,
+    "lng":13.4138842,
+    "number":"4",
+    "name":"ParkInn Hotel Allego fastchager Alexanderstra\u00dfe 4 Berlin",
+    "street_name":"Alexanderstra\u00dfe",
+    "postal_code":"10178",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5113754,
+    "lng":13.4492416,
+    "number":"42",
+    "name":"Upstalsboom Hotel Friedrichshain",
+    "street_name":"Gubener Stra\u00dfe",
+    "postal_code":"10243",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5122452,
+    "lng":13.3826818,
+    "number":"2",
+    "name":"Lautlos - An der Kolonnade",
+    "street_name":"An der Kolonnade",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5081902,
+    "lng":13.4144039,
+    "number":"13",
+    "name":"Allego BE Mobil - Heinrich-Heine-Stra\u00dfe",
+    "street_name":"Heinrich-Heine-Stra\u00dfe",
+    "postal_code":"10179",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5081406,
+    "lng":13.5084476,
+    "number":"63",
+    "name":"Ubitricity Laterne",
+    "street_name":"Einbecker Stra\u00dfe",
+    "postal_code":"10315",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5195312,
+    "lng":13.3893147,
+    "number":"96",
+    "name":"NH Collection Berlin Friedrichstrasse (Tesla)",
+    "street_name":"Friedrichstra\u00dfe",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5199318,
+    "lng":13.3802309,
+    "number":"31",
+    "name":"31 Luisenstrasse Berlin",
+    "street_name":"Luisenstr.",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5229073,
+    "lng":13.380991,
+    "number":"32",
+    "name":"Berlin - 32 Reinhardtstra\u00dfe",
+    "street_name":"Reinhardtstra\u00dfe",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5210991,
+    "lng":13.4017143,
+    "number":"3",
+    "name":"Parkstrom - Anna-Louisa-Karsch-Stra\u00dfe, 3 - Berlin",
+    "street_name":"Anna-Louisa-Karsch-Stra\u00dfe",
+    "postal_code":"10178",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5070038,
+    "lng":13.4055834,
+    "number":"55",
+    "name":"Be-emobil - Stallschreiberstrasse",
+    "street_name":"Stallschreiberstrasse",
+    "postal_code":"10969",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5110664,
+    "lng":13.4292908,
+    "number":"37",
+    "name":"New Motion (DE) -  Holzmarktstra\u00dfe 37 - Berlin",
+    "street_name":"Holzmarktstra\u00dfe",
+    "postal_code":"10243",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5131264,
+    "lng":13.4480886,
+    "number":"4",
+    "name":"Allego Be-emobil - Gr\u00fcnberger Stra\u00dfe",
+    "street_name":"Gr\u00fcnberger Stra\u00dfe",
+    "postal_code":"10243",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5060806,
+    "lng":13.4465685,
+    "number":"11",
+    "name":"East Side Mall",
+    "street_name":"Tamara-Danz-Stra\u00dfe",
+    "postal_code":"10243",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5218124,
+    "lng":13.4543648,
+    "number":"23",
+    "name":"Be-emobil - Ebertystra\u00dfe - Berlin",
+    "street_name":"Ebertystra\u00dfe",
+    "postal_code":"10249",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5102425,
+    "lng":13.4903631,
+    "number":"4a",
+    "name":"Comfortcharge GmbH - 4 Buchberger Str - Berlin",
+    "street_name":"Buchberger Stra\u00dfe",
+    "postal_code":"10365",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.51968,
+    "lng":13.3853226,
+    "number":"9X",
+    "name":"Be emobil Neust\u00e4dtische Kirchstrasse",
+    "street_name":"Neust\u00e4dtische Kirchstra\u00dfe",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5238228,
+    "lng":13.4145346,
+    "number":"2",
+    "name":"New Motion - Q-Park Tiefgarage - Alexandrarstrasse",
+    "street_name":"Alexanderstra\u00dfe",
+    "postal_code":"10178",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5192299,
+    "lng":13.3904886,
+    "number":"4",
+    "name":"4 Planckstr. Berlin",
+    "street_name":"Planckstr.",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5097122,
+    "lng":13.4234457,
+    "number":"3",
+    "name":"Wilhelmine-Gemberg-Weg",
+    "street_name":"Wilhelmine-Gemberg-Weg",
+    "postal_code":"10179",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5204163,
+    "lng":13.4380293,
+    "number":"83",
+    "name":"Allego - Friedenstra\u00dfe - Berlin",
+    "street_name":"Friedenstra\u00dfe",
+    "postal_code":"10249",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5121269,
+    "lng":13.4856644,
+    "number":"172",
+    "name":"Frankfurter Allee 172",
+    "street_name":"Frankfurter Allee",
+    "postal_code":"10365",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.508007,
+    "lng":13.4494295,
+    "number":"107",
+    "name":"Allego Be-emobil",
+    "street_name":"Marchlewskistra\u00dfe",
+    "postal_code":"10243",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.523056,
+    "lng":13.4402046,
+    "number":"3",
+    "name":"Allego (DE) - 3 Matthiasstr. - Berlin",
+    "street_name":"Matthiasstr.",
+    "postal_code":"10249",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5072556,
+    "lng":13.4672012,
+    "number":"55",
+    "name":"W\u00fchlischstrasse 54, in Berlin",
+    "street_name":"W\u00fchlischstra\u00dfe",
+    "postal_code":"10245",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5196762,
+    "lng":13.3886852,
+    "number":"148-149",
+    "name":"NH Collection Hotel",
+    "street_name":"Friedrichstra\u00dfe",
+    "postal_code":"10117",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5210152,
+    "lng":13.4040184,
+    "number":"2",
+    "name":"Be emobil allego - Spandauer Stra\u00dfe Berlin",
+    "street_name":"Spandauer Stra\u00dfe",
+    "postal_code":"10178",
+    "city":"Berlin"
+  },
+  {
+    "lat":52.5224724,
+    "lng":13.4513168,
+    "number":"26",
+    "name":"Stromparkplatz",
+    "street_name":"Stra\u00dfmannstra\u00dfe",
+    "postal_code":"10249",
+    "city":"Berlin"
   }
 ]

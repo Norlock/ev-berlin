@@ -8,7 +8,6 @@ import Url exposing (Url)
 type alias Model =
     { markers : List Marker
     , favorites : List Marker
-    , search : String
     , dialog : Maybe DialogType
     , showFavorites : Bool
     }
@@ -45,8 +44,6 @@ type Msg
     | HideDialog
     | AddToFavorites Marker
     | DeleteFromFavorites Marker
-    | SearchInput String
-    | SubmitSearch
     | UpdateFavorites Location
     | ToggleFavorites
 

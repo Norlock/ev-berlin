@@ -6,10 +6,6 @@ import Json.Decode.Pipeline exposing (..)
 import Types exposing (..)
 
 
-
--- Markers
-
-
 fetchMarkers : Cmd Msg
 fetchMarkers =
     Http.get

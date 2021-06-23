@@ -27,7 +27,6 @@ init _ _ _ =
     ( { markers = []
       , favorites = []
       , dialog = Nothing
-      , search = ""
       , showFavorites = False
       }
     , toJSLoadMaps ""
@@ -52,12 +51,6 @@ update msg model =
         HideDialog ->
             ( { model | dialog = Nothing }, Cmd.none )
 
-        SearchInput val ->
-            ( { model | search = val }, Cmd.none )
-
-        SubmitSearch ->
-            handleSubmitSearch model
-
         UpdateFavorites marker ->
             ( handleUpdateFavorites model marker, Cmd.none )
 
@@ -79,6 +72,10 @@ portMarkers model =
 
     else
         ( model, toJSMarkers model.markers )
+
+
+
+-- Favorites
 
 
 handleUpdateFavorites : Model -> Location -> Model
@@ -120,14 +117,35 @@ deleteFromFavorites model marker =
     ( { model | favorites = favorites, dialog = Nothing }, toJSStoreFavorites favorites )
 
 
-openFavoriteDialog : Model -> Marker -> Model
-openFavoriteDialog model marker =
-    { model | dialog = Just (Favorites marker) }
+isFavorite : Model -> Marker -> Bool
+isFavorite model marker =
+    model.favorites
+        |> List.filter (\m -> m.lat == marker.lat && m.lng == marker.lng)
+        |> List.head
+        |> Maybe.map (\_ -> True)
+        |> Maybe.withDefault False
 
 
-handleSubmitSearch : Model -> ( Model, Cmd Msg )
-handleSubmitSearch model =
-    ( model, Cmd.none )
+favoritesBody : Marker -> Msg -> Html Msg
+favoritesBody marker msg =
+    div [ class "favorites-dialog-body" ]
+        [ favoritesBodyRow "Name" marker.displayName
+        , favoritesBodyRow "Address" (marker.streetName ++ " " ++ marker.number)
+        , favoritesBodyRow "Postal code" marker.postalCode
+        , favoritesBodyRow "City" marker.city
+        , div [ class "button-bar" ]
+            [ button [ class "confirm", onClick msg ] [ text "yes" ]
+            , button [ class "deny", onClick HideDialog ] [ text "no" ]
+            ]
+        ]
+
+
+favoritesBodyRow : String -> String -> Html Msg
+favoritesBodyRow label info =
+    div [ class "row" ]
+        [ div [ class "label" ] [ text label ]
+        , div [ class "detail" ] [ text info ]
+        ]
 
 
 handleMarkers : Model -> Result Http.Error (List Marker) -> ( Model, Cmd Msg )
@@ -144,14 +162,6 @@ handleMarkers model result =
 
         Err _ ->
             ( { model | dialog = Just (Error errorMsg) }, Cmd.none )
-
-
-subscriptions : Model -> Sub Msg
-subscriptions _ =
-    Sub.batch
-        [ toElmFavorites favoritesSubscription
-        , toElmMarkerSelected selectedSubscription
-        ]
 
 
 view : Model -> Browser.Document Msg
@@ -173,15 +183,19 @@ body model =
 searchBar : Model -> Html Msg
 searchBar model =
     div [ class "search-bar" ]
-        [ input [ placeholder "Search", id "search-input", onInput SearchInput ] []
-        , button [ class "nav-btn fas fa-search", onClick SubmitSearch ] []
-        , button
-            [ class "nav-btn fav-btn fas fa-star"
+        [ input [ placeholder "Search", id "search-input" ] []
+        , div
+            [ class "fav-btn fas fa-star"
             , classList [ ( "show-favorites", model.showFavorites ) ]
             , onClick ToggleFavorites
             ]
             []
+        , div [ id "tooltip" ] [ text "Toggle favorites" ]
         ]
+
+
+
+-- Dialog
 
 
 selectedDialog : Model -> Html Msg
@@ -212,6 +226,11 @@ dialog title dialogBody =
         ]
 
 
+openFavoriteDialog : Model -> Marker -> Model
+openFavoriteDialog model marker =
+    { model | dialog = Just (Favorites marker) }
+
+
 favoritesDialog : Model -> Marker -> Html Msg
 favoritesDialog model marker =
     if isFavorite model marker then
@@ -219,31 +238,14 @@ favoritesDialog model marker =
             title =
                 "Remove from favorites?"
         in
-        dialog title (favoritesBody (DeleteFromFavorites marker))
+        dialog title (favoritesBody marker (DeleteFromFavorites marker))
 
     else
         let
             title =
                 "Add to favorites?"
         in
-        dialog title (favoritesBody (AddToFavorites marker))
-
-
-isFavorite : Model -> Marker -> Bool
-isFavorite model marker =
-    model.favorites
-        |> List.filter (\m -> m.lat == marker.lat && m.lng == marker.lng)
-        |> List.head
-        |> Maybe.map (\_ -> True)
-        |> Maybe.withDefault False
-
-
-favoritesBody : Msg -> Html Msg
-favoritesBody msg =
-    div [ class "favorites-dialog-body" ]
-        [ button [ class "confirm", onClick msg ] [ text "yes" ]
-        , button [ class "deny", onClick HideDialog ] [ text "no" ]
-        ]
+        dialog title (favoritesBody marker (AddToFavorites marker))
 
 
 errorDialog : ErrorMsg -> Html Msg
@@ -253,6 +255,18 @@ errorDialog errorMsg =
             p [ class "dialog-message" ] [ text errorMsg.body ]
     in
     dialog errorMsg.title dialogBody
+
+
+
+-- Subscriptions
+
+
+subscriptions : Model -> Sub Msg
+subscriptions _ =
+    Sub.batch
+        [ toElmFavorites favoritesSubscription
+        , toElmMarkerSelected selectedSubscription
+        ]
 
 
 favoritesSubscription : List Marker -> Msg

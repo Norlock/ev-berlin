@@ -41,6 +41,8 @@ async function loadGoogleMaps(): Promise<void> {
   map = new google.maps.Map(document.getElementById("map"), {
     center: berlin,
     zoom: 14,
+    fullscreenControl: false,
+    mapTypeControl: false
   });
 
   setMyLocation();
@@ -113,6 +115,10 @@ function findNearestMarker(location: google.maps.LatLng) {
   });
 
   marker.setAnimation(google.maps.Animation.BOUNCE);
+
+  setTimeout(() => {
+    marker.setAnimation(null);
+  }, 5000);
 }
 
 app.ports.toJSLoadMaps.subscribe((message: any) => {
@@ -134,6 +140,8 @@ app.ports.toJSMarkers.subscribe((items: MarkerData[]) => {
         lat: marker.getPosition().lat(),
         lng: marker.getPosition().lng()
       }
+
+      marker.setAnimation(null);
 
       app.ports.toElmMarkerSelected.send(location);
     });

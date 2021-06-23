@@ -19,7 +19,7 @@
     }
 }
 
-.nav-btn {
+.fav-btn {
     cursor: pointer;
     outline: unset;
     margin-left: 0.5em;
@@ -27,8 +27,43 @@
     background-color: lightgray;
     border-radius: 50%;
     padding: 5px;
+
+    &:hover + #tooltip {
+         visibility: visible;
+         opacity: 1;
+    }
+
 }
 
 .show-favorites {
     background-color: #6dfb6d;
+}
+
+#tooltip {
+    position: absolute;
+    top: 125%;
+    left: 72%;
+    background: black;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    min-width: 140px;
+
+    // Animation effect
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.2s linear;
+
+    &:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        top: -5px;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid black;
+        left: 50%;
+    }
 }
