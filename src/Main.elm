@@ -43,8 +43,8 @@ update msg model =
         ClickedLink _ ->
             ( model, Cmd.none )
 
-        FetchMarkers ->
-            ( model, Api.fetchMarkers )
+        PortFavorites favorites ->
+            ( { model | favorites = favorites }, Api.fetchMarkers )
 
         ReceivedMarkers result ->
             handleMarkers model result
@@ -62,20 +62,10 @@ update msg model =
             ( handleUpdateFavorites model marker, Cmd.none )
 
         AddToFavorites marker ->
-            ( { model
-                | favorites = model.favorites ++ [ marker ]
-                , dialog = Nothing
-              }
-            , Cmd.none
-            )
+            addToFavorites model marker
 
         DeleteFromFavorites marker ->
-            let
-                favorites =
-                    model.favorites
-                        |> List.filter (\m -> m.lat /= marker.lat && m.lng /= marker.lng)
-            in
-            ( { model | favorites = favorites, dialog = Nothing }, Cmd.none )
+            deleteFromFavorites model marker
 
         ToggleFavorites ->
             { model | showFavorites = not model.showFavorites }
@@ -104,6 +94,30 @@ handleUpdateFavorites model marker =
         |> List.head
         |> Maybe.map (openFavoriteDialog model)
         |> Maybe.withDefault { model | dialog = Just (Error errorMsg) }
+
+
+addToFavorites : Model -> Marker -> ( Model, Cmd Msg )
+addToFavorites model marker =
+    let
+        favorites =
+            model.favorites ++ [ marker ]
+    in
+    ( { model
+        | favorites = favorites
+        , dialog = Nothing
+      }
+    , toJSStoreFavorites favorites
+    )
+
+
+deleteFromFavorites : Model -> Marker -> ( Model, Cmd Msg )
+deleteFromFavorites model marker =
+    let
+        favorites =
+            model.favorites
+                |> List.filter (\m -> m.lat /= marker.lat && m.lng /= marker.lng)
+    in
+    ( { model | favorites = favorites, dialog = Nothing }, toJSStoreFavorites favorites )
 
 
 openFavoriteDialog : Model -> Marker -> Model
@@ -135,8 +149,8 @@ handleMarkers model result =
 subscriptions : Model -> Sub Msg
 subscriptions _ =
     Sub.batch
-        [ requestMarkers decodeMarkersSubscription
-        , toElmMarkerSelected locationSubscription
+        [ toElmFavorites favoritesSubscription
+        , toElmMarkerSelected selectedSubscription
         ]
 
 
@@ -241,13 +255,13 @@ errorDialog errorMsg =
     dialog errorMsg.title dialogBody
 
 
-decodeMarkersSubscription : String -> Msg
-decodeMarkersSubscription _ =
-    FetchMarkers
+favoritesSubscription : List Marker -> Msg
+favoritesSubscription favorites =
+    PortFavorites favorites
 
 
-locationSubscription : Location -> Msg
-locationSubscription location =
+selectedSubscription : Location -> Msg
+selectedSubscription location =
     UpdateFavorites location
 
 
@@ -261,7 +275,10 @@ port toJSLoadMaps : String -> Cmd msg
 port toJSMarkers : List Marker -> Cmd msg
 
 
-port requestMarkers : (String -> msg) -> Sub msg
+port toJSStoreFavorites : List Marker -> Cmd msg
+
+
+port toElmFavorites : (List Marker -> msg) -> Sub msg
 
 
 port toElmMarkerSelected : (Location -> msg) -> Sub msg

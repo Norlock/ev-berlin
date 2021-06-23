@@ -40,7 +40,7 @@ type alias Location =
 type Msg
     = ChangedUrl Url
     | ClickedLink UrlRequest
-    | FetchMarkers
+    | PortFavorites (List Marker)
     | ReceivedMarkers (Result Http.Error (List Marker))
     | HideDialog
     | AddToFavorites Marker
