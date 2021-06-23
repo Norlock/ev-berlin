@@ -33,7 +33,7 @@ async function loadGoogleMaps(): Promise<void> {
   const loader = new Loader({
     apiKey: API_KEY,
     version: "weekly",
-    libraries: ["places"]
+    libraries: ["places", "geometry"]
   });
 
   google = await loader.load();
@@ -66,9 +66,7 @@ function setMyLocation() {
       () => {
       }
     );
-  } else {
-    // Browser doesn't support Geolocation TODO
-  }
+  } 
 }
 
 function setAutocomplete() {
@@ -82,14 +80,9 @@ function setAutocomplete() {
 
   google.maps.event.addListener(autocomplete, 'place_changed', () => {
     const place = autocomplete.getPlace();
-    const placeLocation = place.geometry.location;
+    const location = place.geometry.location;
 
-    const location = {
-      lat: placeLocation.lat(),
-      lng: placeLocation.lng()
-    }
-
-    app.ports.requestNearestMarker.send(location);
+    findNearestMarker(location);
   });
 }
 
@@ -108,6 +101,18 @@ function removeMarkers() {
   });
 
   markers = [];
+}
+
+function findNearestMarker(location: google.maps.LatLng) {
+  const marker = markers.reduce((prev, curr) => {
+
+    const cpos = google.maps.geometry.spherical.computeDistanceBetween(location, curr.getPosition());
+    const ppos = google.maps.geometry.spherical.computeDistanceBetween(location, prev.getPosition());
+
+    return cpos < ppos ? curr : prev;
+  });
+
+  marker.setAnimation(google.maps.Animation.BOUNCE);
 }
 
 app.ports.toJSLoadMaps.subscribe((message: any) => {
